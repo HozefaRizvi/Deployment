@@ -13,6 +13,9 @@ const app = express();
 // Use CORS without any options to allow all origins
 app.use(cors());
 
+// Enable preflight requests for all routes
+app.options('*', cors());  // This line handles preflight requests
+
 app.use(express.json());
 app.use('/api/auth', authRoutes);
 app.use('/api/cars', carRoutes);
