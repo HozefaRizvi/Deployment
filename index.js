@@ -10,11 +10,11 @@ dotenv.config();
 
 const app = express();
 
-// Use CORS without any options to allow all origins
+// Allow requests from all origins
 app.use(cors());
 
 // Enable preflight requests for all routes
-app.options('*', cors());  // This line handles preflight requests
+app.options('*', cors());
 
 app.use(express.json());
 app.use('/api/auth', authRoutes);
