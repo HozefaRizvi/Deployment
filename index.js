@@ -3,31 +3,32 @@ const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const authRoutes = require('./routes/auth');
 const carRoutes = require('./routes/car');
-const profileRoutes = require('./routes/profile');
+const porfileroutes = require('./routes/profile')
+const otproutes = require('./routes/Otproutes')
+const biddingRoutes = require('./routes/bidding');
+const bodyParser = require('body-parser');  
 const cors = require('cors');
 
-dotenv.config();
+dotenv.config();  
 
-const app = express();
+const app = express();  
+app.use(cors());  
+const PORT = 3000;
 
-// Allow requests from all origins
-app.use(cors());
 
-// Enable preflight requests for all routes
-app.options('*', cors());
+app.use(express.json());  
+app.use('/api/auth', authRoutes);  
+app.use('/api/cars', carRoutes);  
+app.use('/api/profiles', porfileroutes); 
+app.use('/api/otp',otproutes)
+app.use('/api/bidding', biddingRoutes);
 
-app.use(express.json());
-app.use('/api/auth', authRoutes);
-app.use('/api/cars', carRoutes);
-app.use('/api/profiles', profileRoutes);
-
-// MongoDB connection
+// Connect to MongoDB
 mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log('MongoDB connected'))
   .catch(err => console.log('MongoDB connection error:', err));
 
-// Start server
-const PORT = process.env.PORT || 3000;
+// Start the server
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });

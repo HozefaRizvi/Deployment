@@ -4,19 +4,13 @@ const carSchema = new mongoose.Schema({
   make: { type: String, required: true },
   model: { type: String, required: true },
   variant: { type: String, required: true },
-  condition: { type: String, required: true, enum: ['new', 'used'] },
+  condition: { type: String, required: false, enum: ['new', 'used'] },
   pictures: [{ type: String }], 
   videoUrl: { type: String },
   priceForTraders: { type: Number, required: true },
-  priceForPublic: { 
-    type: Number,
-    required: true,
-    default: function() {
-      return this.priceForTraders * 1.2;  // Public price is 20% markup on trader price
-    }
-  },
+  priceForPublic: { type: Number },
   traderDiscount: { type: Number },
-  description: { type: String },
+  description: { type: String }, 
   registration: { type: String, required: true },
   transmission: { type: String, required: true },
   engine: { type: String, required: true },
