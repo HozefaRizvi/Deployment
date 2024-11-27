@@ -22,14 +22,12 @@ const validateSignupData = (userType, data) => {
     if (!firstName) errors.push('First Name is required for traders');
     if (!lastName) errors.push('Last Name is required for traders');
     if (!companyName) errors.push('Company Name is required for traders');
-    if (!address) errors.push('Address is required for traders');
     if (!city) errors.push('City is required for traders');
 
     // Postcode validation (optional: you can specify a regex pattern based on your region)
     if (!postCode) errors.push('Postcode is required for traders');
     
-    // VAT Number validation (optional)
-    if (!VATNumber) errors.push('VAT Number is required for traders');
+
 
     // NextGear customer validation
     if (typeof isNextGearCustomer !== 'boolean') {

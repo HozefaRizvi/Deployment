@@ -48,15 +48,15 @@ const getCurrentBid = async (req, res) => {
   const { carId } = req.params;
 
   try {
-    const currentBid = await Bidding.findOne({ car: carId })
-      .sort({ bidDate: -1 })
+    const highestBid = await Bidding.findOne({ car: carId })
+      .sort({ bidAmount: -1 })  // Sort by bid amount in descending order
       .populate("user", "firstName lastName");
 
-    if (!currentBid) {
+    if (!highestBid) {
       return res.status(404).json({ msg: "No bids found for this car" });
     }
 
-    res.json(currentBid);
+    res.json(highestBid);
   } catch (err) {
     console.error(err);
     res.status(500).json({ msg: "Server error" });

@@ -21,7 +21,14 @@ router.post('/signup', async (req, res) => {
     phone,
     companyName,
     VATNumber,
-    isNextGearCustomer
+    isNextGearCustomer,
+    emiratesId,
+    DrivingLicensePicUri,
+    BillPicUri,
+    BankStatementPicUri,
+    DirectorName,
+    PersonalAddressOfDirector,
+    BusinessAddress,
   } = req.body;
 
   try {
@@ -42,7 +49,10 @@ router.post('/signup', async (req, res) => {
       userType,
       email,
       password,
-      country,
+      emiratesId,
+      DrivingLicensePicUri,
+      BillPicUri,
+      BankStatementPicUri,
     };
 
     // Add additional fields for trader type
@@ -50,13 +60,18 @@ router.post('/signup', async (req, res) => {
       Object.assign(newUser, {
         firstName,
         lastName,
-        address,
         city,
         postCode,
         phone,
         companyName,
-        VATNumber,
         isNextGearCustomer,
+        emiratesId,
+        DrivingLicensePicUri,
+        BillPicUri,
+        BankStatementPicUri,
+        DirectorName,
+        PersonalAddressOfDirector,
+        BusinessAddress,
       });
     }
 
@@ -72,6 +87,7 @@ router.post('/signup', async (req, res) => {
     res.status(500).json({ msg: 'Internal server error. Please try again later.' });
   }
 });
+
 
 // Login Route
 router.post('/login', loginLimiter, [
@@ -137,3 +153,6 @@ router.post('/reset-password', async (req, res) => {
 });
 
 module.exports = router;
+
+
+
